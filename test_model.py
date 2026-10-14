@@ -1,5 +1,5 @@
 """Checks that the model reproduces company guidance and behaves sensibly."""
-from src.model import implied_terminal_asp, load_config, project, value
+from model import implied_terminal_asp, load_config, project, value
 
 CFG = load_config()
 
@@ -26,7 +26,7 @@ def test_scenarios_ordered():
 
 
 def test_implied_asp_reproduces_price():
-    from src.model import scaled_asp_path
+    from model import scaled_asp_path
     a = implied_terminal_asp(CFG)
     v = value(CFG, "base", scaled_asp_path(CFG, a)).per_share
     assert abs(v - CFG["market"]["share_price"]) < 0.5
