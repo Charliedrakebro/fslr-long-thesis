@@ -1,0 +1,88 @@
+{
+  "share_price": 186.0,
+  "scenarios": {
+    "bear": {
+      "scenario": "bear",
+      "pv_core_fcf": -0.382,
+      "pv_45x": 7.177,
+      "pv_terminal": 0.0,
+      "net_cash": 2.0,
+      "equity_value": 8.795,
+      "per_share": 81.666,
+      "upside": -0.561
+    },
+    "base": {
+      "scenario": "base",
+      "pv_core_fcf": 3.624,
+      "pv_45x": 8.96,
+      "pv_terminal": 11.076,
+      "net_cash": 2.0,
+      "equity_value": 25.659,
+      "per_share": 238.249,
+      "upside": 0.281
+    },
+    "bull": {
+      "scenario": "bull",
+      "pv_core_fcf": 5.799,
+      "pv_45x": 10.06,
+      "pv_terminal": 18.49,
+      "net_cash": 2.0,
+      "equity_value": 36.349,
+      "per_share": 337.498,
+      "upside": 0.815
+    }
+  },
+  "probability_weighted_value": 223.9,
+  "probability_weighted_upside": 0.204,
+  "market_implied_2032_asp": 0.3254,
+  "sensitivity": {
+    "asp_2032": [
+      0.3,
+      0.32,
+      0.34,
+      0.36,
+      0.38,
+      0.4
+    ],
+    "wacc": [
+      0.09,
+      0.1,
+      0.11,
+      0.12
+    ],
+    "value_per_share": [
+      [
+        157.7,
+        192.8,
+        227.9,
+        263.1,
+        298.2,
+        333.3
+      ],
+      [
+        147.6,
+        177.8,
+        208.0,
+        238.2,
+        268.5,
+        298.7
+      ],
+      [
+        139.4,
+        165.8,
+        192.2,
+        218.6,
+        245.1,
+        271.5
+      ],
+      [
+        132.5,
+        155.9,
+        179.3,
+        202.7,
+        226.1,
+        249.5
+      ]
+    ]
+  }
+}

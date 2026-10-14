@@ -1,0 +1,73 @@
+# First Solar (FSLR) long thesis - model assumptions
+# Units: volume in GW, prices/costs in $ per watt, money in $bn.
+# Explicit forecast 2026-2032 (the full Section 45X phase-down window), then a
+# terminal value on core (ex-45X) cash flow from 2033, when 45X has expired.
+# Valuation date: 31 Dec 2026 (year-end 2026 net cash is the guided midpoint).
+
+market:
+  share_price: 186.0          # USD, close 13 Oct 2026
+  diluted_shares_m: 107.7     # Q2 2026 weighted-average diluted shares
+  net_cash_ye2026: 2.0        # $bn, midpoint of $1.7-2.3bn guidance
+
+valuation:
+  wacc: 0.10
+  terminal_growth: 0.02
+  tax_rate: 0.21              # applied to core EBIT only; 45X credits are not taxable income
+  credit_transfer_discount: 0.04   # haircut when 45X credits are sold for cash
+  nwc_pct_of_revenue_change: 0.10
+  scenario_weights: {bear: 0.25, base: 0.50, bull: 0.25}
+
+# Section 45X: effective credit per watt of US production, calibrated to 2026
+# guidance ($2.10-2.19bn on 12.6-13.1 GW of US output = ~$0.167/W).
+# Statutory phase-down for solar components: 100% to 2029, 75% 2030, 50% 2031,
+# 25% 2032, 0% from 2033.
+credit_45x:
+  per_watt_full: 0.167
+  phase: {2026: 1.0, 2027: 1.0, 2028: 1.0, 2029: 1.0, 2030: 0.75, 2031: 0.50, 2032: 0.25}
+
+years: [2026, 2027, 2028, 2029, 2030, 2031, 2032]
+
+# 2026 column is calibrated to company guidance in every scenario:
+# 17.6 GW sold, $5.05bn net sales (ASP ~$0.287/W), $2.5bn gross profit incl. 45X.
+# 2026 cost/W includes ~$0.016/W of one-offs (SE Asia underutilisation,
+# South Carolina start-up, tariffs) that fall away from 2027.
+scenarios:
+  base:
+    description: >
+      Backlog (~$0.30/W average) rolls off and is rebooked closer to recent US
+      bookings (~$0.36/W). The Section 232 floor ($0.38/W minimum import price
+      plus duty) holds, so blended ASP converges to ~$0.36/W by 2032 while cost
+      falls ~1.5% a year. Volume grows as the South Carolina finishing line ramps.
+    volume_gw:   [17.6, 19.0, 20.0, 21.0, 21.0, 21.0, 21.0]
+    us_share:    [0.73, 0.76, 0.80, 0.82, 0.82, 0.82, 0.82]
+    asp:         [0.287, 0.300, 0.318, 0.335, 0.350, 0.355, 0.360]
+    cost_per_w:  [0.267, 0.252, 0.247, 0.243, 0.239, 0.235, 0.232]
+    opex:        [0.62, 0.64, 0.66, 0.68, 0.70, 0.72, 0.74]
+    d_and_a:     [0.60, 0.63, 0.66, 0.68, 0.70, 0.70, 0.70]
+    capex:       [0.90, 0.80, 0.75, 0.70, 0.70, 0.70, 0.70]
+  bull:
+    description: >
+      Section 232 floor tightens the US market; new contracts price near the
+      landed cost of imports, taking blended ASP to ~$0.39/W. Southeast Asia
+      capacity is redeployed and US volume reaches 24 GW; CuRe and perovskite
+      efficiency gains cut cost faster.
+    volume_gw:   [17.6, 19.5, 21.5, 23.0, 24.0, 24.0, 24.0]
+    us_share:    [0.73, 0.78, 0.82, 0.85, 0.85, 0.85, 0.85]
+    asp:         [0.287, 0.305, 0.330, 0.355, 0.375, 0.385, 0.390]
+    cost_per_w:  [0.267, 0.250, 0.243, 0.237, 0.231, 0.226, 0.222]
+    opex:        [0.62, 0.65, 0.68, 0.71, 0.74, 0.76, 0.78]
+    d_and_a:     [0.60, 0.64, 0.68, 0.72, 0.75, 0.76, 0.77]
+    capex:       [0.90, 0.95, 0.90, 0.80, 0.78, 0.77, 0.77]
+  bear:
+    description: >
+      Section 232 is diluted or challenged, imports re-route, and utility demand
+      softens once the safe-harbour pipeline is built out. ASP drifts down to
+      ~$0.28/W, volume stalls at 17 GW and cost barely improves - the core
+      business earns little once 45X fades.
+    volume_gw:   [17.6, 17.5, 17.0, 17.0, 17.0, 17.0, 17.0]
+    us_share:    [0.73, 0.75, 0.76, 0.76, 0.76, 0.76, 0.76]
+    asp:         [0.287, 0.290, 0.288, 0.285, 0.283, 0.281, 0.280]
+    cost_per_w:  [0.267, 0.258, 0.255, 0.252, 0.250, 0.248, 0.247]
+    opex:        [0.62, 0.63, 0.64, 0.65, 0.66, 0.67, 0.68]
+    d_and_a:     [0.60, 0.62, 0.63, 0.63, 0.63, 0.63, 0.63]
+    capex:       [0.90, 0.70, 0.65, 0.63, 0.63, 0.63, 0.63]
